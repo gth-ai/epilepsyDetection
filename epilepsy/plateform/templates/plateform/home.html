@@ -1,0 +1,145 @@
+{% extends 'plateform/base.html'%}
+{% load static %}
+
+
+
+{% block content %}
+<div class="header">
+	<div class="container">
+		<div class="logo">
+		<h1>
+			<a>Epilepsy Detection</a>
+		</h1>
+		</div>
+		<div class="top-nav">
+			<span class="menu"><img src="{% static 'images/1.jpg' %}" alt=""> </span>
+				<ul>
+					
+					<li class="active"><a href="{% url 'home' %}" class="hvr-sweep-to-bottom">Home</a></li>
+					{% if request.user.customer.id %}
+					<li><a href="{% url 'expert' %}" class="hvr-sweep-to-bottom">Expert Exploration</a></li>
+					{% if request.user.customer.status ==  'patient' %}
+					<li><a href="{% url 'normal' %}" class="hvr-sweep-to-bottom">Normal Exploration </a></li>
+					{% endif %}
+					{% endif %}
+					<li><a href="#" class="hvr-sweep-to-bottom">Contact </a></li>
+					
+					{% if request.user.is_staff %}
+					<li><a href="{% url 'dashboard' %}" style="color:green">Dashboard </a></li>
+					{% endif %}
+					{% if request.user.customer.id %}
+					<li><a href="{% url 'customer_settings' %}" class="hvr-sweep-to-bottom">Profile</a></li>
+					{% endif %}
+					<li><a href="{% url 'logout' %}" style="color:red">Logout </a></li>
+				</ul>
+				{% if request.user.customer %}
+					<p><font color="white">Welcome {{request.user.customer.firstname}}</font></p>
+				{% else %}
+					<p><font color="white">Welcome {{request.user.username}}</font></p>
+				{% endif %}
+
+				<div class="clearfix"> </div>
+						<!--script-->
+					<script>
+						$("span.menu").click(function(){
+							$(".top-nav ul").slideToggle(500, function(){
+							});
+						});
+				</script>				
+		</div>
+		<div class="clearfix"> </div>
+	</div>
+<!---->
+</div>
+<div class="content">
+	<div class="container">
+		<!--content-top-->
+		<div class="content-top">
+			<div class="content-top1">
+			  	<div class=" col-md-4 grid-top">
+					<div class="top-grid">
+					 <i class="glyphicon glyphicon-book"></i>
+					  <div class="caption">
+						<h3>Best Epilepsy Detect App</h3>
+						<p> By a group of Datascietist Student at ESPRIT</p>
+					 </div>
+				</div>
+				</div>
+				<div class=" col-md-4 grid-top">
+					<div class="top-grid top">
+					 <i class="glyphicon glyphicon-time home1 "></i>
+					  <div class="caption">
+						<h3>Detect Early Epilepsy</h3>
+						<p> You want to Gain a lot of Time to detect Epilepsy? Use me </p>
+					  </div>
+					</div>
+				</div>
+				<div class=" col-md-4 grid-top">
+					<div class="top-grid">
+					 <i class="glyphicon glyphicon-edit "></i>
+					  <div class="caption">
+						<h3>EEG</h3>
+						<p> Have more information about the Electro Encephalogram save</p>
+						{% if not request.user.customer%}
+						<p> Click <a href="{% url 'message_to_admin' 'expert' %}">here</a> to have a <font color='red'>expert</font> mode</p>
+						<p> Click <a href="{% url 'message_to_admin' 'patient' %}">here</a> to have a <font color='red'>patient</font> mode</p>
+						{% endif %}
+					  </div>
+					</div>
+				</div>
+			<div class="clearfix"> </div>
+		</div>
+		</div>
+		<!--//content-top-->
+		<!--cpntent-mid-->
+		<center>
+			<h1 id="h1-bootstrap-heading">What is Epilepsy ?</h1><br><br>
+			<iframe width="800" height="500" src="https://www.youtube.com/embed/C4d8_OlG-Bw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+			<br><br>
+			<h1 id="h1-bootstrap-heading">How is epilepsy diagnosed ?</h1><br><br>
+			<iframe width="800" height="500" src="https://www.youtube.com/embed/Ryc9UsAxcyU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+			<br><br>
+			<h1 id="h1-bootstrap-heading">Epileptic Detection Using epilepsydetection.com </h1><br><br>
+			<iframe width="800" height="500" src="https://www.youtube.com/embed/SK5wp31KKcA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			<br><br>
+		</center>
+		<br><br>
+		
+		
+	<!--//content-bottom-->
+	<!--address-->
+	<div class="address">
+		<div class="container">
+			<div class=" address-more">
+				<h3>Address</h3>
+				<div class="col-md-4 address-grid">
+					<i class="glyphicon glyphicon-map-marker"></i>
+					<div class="address1">
+						<p>ESPRIT GHAZELA</p>
+						<p>Ariana</p>
+					</div>
+						<div class="clearfix"> </div>
+				</div>
+				<div class="col-md-4 address-grid ">
+					<i class="glyphicon glyphicon-phone"></i>
+						<div class="address1">
+							<p>+216 54 24 72 98</p>
+						</div>
+					<div class="clearfix"> </div>
+				</div>
+				<div class="col-md-4 address-grid ">
+					<i class="glyphicon glyphicon-envelope"></i>
+						<div class="address1">
+							<p><a href="mailto:hadrien.gayaptagheur@esprit.com">Courant Du Futur</a></p>
+						</div>
+					<div class="clearfix"> </div>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	</div>
+	<!--//address-->	
+</div>
+{% endblock content %}

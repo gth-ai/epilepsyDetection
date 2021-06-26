@@ -1,0 +1,45 @@
+{% extends 'plateform/base.html' %}
+{% load static %}
+
+{% block content %}
+<center><h1 id="h1-bootstrap-heading">List of your EDF Files<a class="anchorjs-link" href="#h1.-bootstrap-heading"><span class="anchorjs-icon"></span></a></h1></center>
+<p>
+    <a href="{% url 'normal' %}" class="btn btn-lg btn-primary">Upload EDF File</a>
+</p>
+<div class="content">
+	<div class="container">
+        <table class="table mb-0">
+            <thead>
+                <tr>
+                    <td>Patient</td>
+                    <td>Doctor</td>
+                    <td>Download</td>
+                    <td>Decision</td>
+                    <td>Analyse</td>
+                    <td>Delete</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for edf in Edfs %}
+                <tr>
+                    <td>{{ edf.patient }}</td>
+                    <td>{{ edf.doctor }}</td>
+                    <td>
+                        <a href="{{ edf.edf.url }}" class="btn btn-sm btn-warning"> Download </a>
+                    </td>
+                    <td>
+                        <a href="{% url 'prediction_edf' edf.pk %}" class="btn btn-sm btn-primary"> Decision </a>
+                    </td>
+                    <td>
+                        <p style="font-style: oblique;color:gray">Only in expert mode</p>
+                    </td>
+                    <td>
+                        <a href="{% url 'delete_edf' edf.pk %}" class="btn btn-sm btn-danger"> Delete </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock content %}

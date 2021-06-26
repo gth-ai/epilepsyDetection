@@ -1,0 +1,114 @@
+{% extends 'plateform/base_admin.html'%}
+
+{% load static %}
+
+{% block content %}
+    <h1 class="h3 mb-4 text-gray-800">Welcome</h1>
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <h1 class="h3 mb-2 text-gray-800">EDF</h1>
+        <p class="mb-4">{{ total_edf }} EDF(s) in our site.</p>
+        <p class="mb-4">{{ total_ica }} ICA(s) created </p>
+
+        <div class="row">
+            <div class="col-md-6">
+                <!-- DataTales Example -->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">EDF Tables</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>Action</th>
+                                        <th>Doctor</th>
+                                        <th>Customer</th>
+                                        <th>edf</th>
+                                        <th>Date Created</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th>Action</th>
+                                        <th>Doctor</th>
+                                        <th>Customer</th>
+                                        <th>Edf</th>
+                                        <th>Date Created</th>
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+                                    {% for edf in edfs %}
+                                    <tr>
+                                        <td>
+                                            <a href="#" class="btn btn-danger btn-circle">
+                                                <i class="fas fa-trash"></i>
+                                            </a>
+                                        </td>
+                                        <td>{{edf.doctor}}</td>
+                                        <td>{{edf.saveBy}}</td>
+                                        <td>{{edf.edf.url}}</td>
+                                        <td>{{edf.date_created|date:'m-d'}}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <!-- DataTales Example -->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">ICA Tables</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>Action</th>
+                                        <th>Edf</th>
+                                        <th>Ica Image</th>
+                                        <th>PSD</th>
+                                        <th>CZ Properties</th>
+                                        <th>Date Created</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th>Action</th>
+                                        <th>Edf</th>
+                                        <th>Ica Image</th>
+                                        <th>PSD</th>
+                                        <th>CZ Properties</th>
+                                        <th>Date Created</th>
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+                                    {% for ica in icas %}
+                                    <tr>
+                                        <td>
+                                            <a href="#" class="btn btn-danger btn-circle">
+                                                <i class="fas fa-trash"></i>
+                                            </a>
+                                        </td>
+                                        <td>{{ica.edf}}</td>
+                                        <td>{{ica.ica_image.url}}</td>
+                                        <td>{{ica.psd.url}}</td>
+                                        <td>{{ica.cz_propertie.url}}</td>
+                                        <td>{{ica.date_created|date:'m-d'}}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+        </div>
+
+    </div>
+{% endblock content %}
