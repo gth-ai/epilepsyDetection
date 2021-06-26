@@ -1,0 +1,39 @@
+{% extends 'plateform/base.html' %}
+{% load static %}
+
+{% block content %}
+    {% autoescape off %}
+        <div class="container">
+            <center>
+                <div class="page-header">
+                    <h1 class="typo1">Analyse de l'EEG du Patient <font color="red">{{ patient }}</font> provenant du <font color="blue">docteur {{ doctor }}</font> </h1> <br><br>
+                </div>
+                    <div class="alert alert-success" role="alert">
+                        <strong>Main Selected Channel</strong>
+                    </div>
+                    <img src="{{ sensor }}">
+                    <div class="alert alert-danger" role="alert">
+                        <strong>EEG Before Filtering</strong>
+                    </div>
+                    <img src="{{ eeg }}">
+                    <div class="alert alert-success" role="alert">
+                        <strong>EEG After Filtering</strong>
+                    </div>
+                    <img src="{{ eeg_filter }}"><br><br><br>
+                    <div class="alert alert-success" role="alert">
+                        <strong>Power Spectral Density(PSD)</strong> More informations about PSD click <a href="https://fr.wikipedia.org/wiki/Densit%C3%A9_spectrale_de_puissance#Traitement_d'images" target="_blank">here
+                    </div>
+                    <img src="{{ psd }}">
+                    <div class="alert alert-warning" role="alert">
+                        <strong>ICA for Main Electrode</strong> More informations about ICA click <a href="https://mne.tools/stable/auto_tutorials/preprocessing/40_artifact_correction_ica.html#sphx-glr-auto-tutorials-preprocessing-40-artifact-correction-ica-py" target="_blank">here</a>
+                    </div>
+                    <img src="{{ ica_plt }}">
+                    <div class="alert alert-warning" role="alert">
+                        <strong>Properties of Cz (central) chanel</strong>
+                    </div>
+                    <img src="{{ cz_propertie }}">
+            </center>
+        </div> 
+        
+    {% endautoescape off %}
+{% endblock content %}
